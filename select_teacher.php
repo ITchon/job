@@ -48,7 +48,7 @@
                             $sql2="select * from studying 
                             inner join people on studying.teacher_id=people.people_id
                             inner join std_group on studying.student_group_id=std_group.group_id
-                            where teacher_id=$people_id order by dpr1 " ;
+                            where teacher_id=$people_id group by dpr3 order by dpr1 " ;
                             $res2=mysqli_query($conn,$sql2);
                             $row2=mysqli_fetch_assoc($res2);
 
@@ -111,7 +111,7 @@
                                     </tr>
                                     <?php }?>
                                     <tr>
-                                    <td></td>
+                                    <td><a href="test.php"><button type="button" class="btn btn-gradient-warning btn-icon-text"> PDF <i class="mdi mdi-printer btn-icon-append"></i></button></a></td>
                                     <td></td>
                                     <td></td>
                                     <th>รวมชั่วโมงการสอน :</th>
