@@ -18,11 +18,11 @@
         <div class="col-lg-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-info">ค้นหาข้อมูลตารางสอน</h4>
+                        <h4 class="card-title text-primary">ค้นหาข้อมูลตารางสอน</h4>
                             <form action="select_teacher.php" method="get" >
                                     <div class="form-group">
                                             <select class="js-example-basic-multiple-limit form-control col-md-4" name="people_id" >
-                                            <option value="">---------- กรุณาเลือกชื่อ -------------</option>
+                                            <option value="" class="">-------------------- กรุณาเลือกชื่อ -----------------------</option>
                                             <?php while($row=mysqli_fetch_assoc($res)){ ?>
                                                     
                                             <option value="<?php echo $row['people_id']?>"> <?php echo $row['people_id']?> <?php echo $row['people_name']."  ".$row['people_surname']?> </option>
@@ -48,7 +48,7 @@
                             $sql2="select * from studying 
                             inner join people on studying.teacher_id=people.people_id
                             inner join std_group on studying.student_group_id=std_group.group_id
-                            where teacher_id=$people_id order by dpr1 " ;
+                            where teacher_id=$people_id group by dpr3 order by dpr1 " ;
                             $res2=mysqli_query($conn,$sql2);
                             $row2=mysqli_fetch_assoc($res2);
 
@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="col-md-4 text-info"><h5>ตารางครูผู้สอน :<b> <?php echo $row2['teacher_name']?></b></h5> </div>
                             <div class="col-md-4 text-info"><h5>รหัสครูผู้สอน : <b> <?php echo $row2['people_id']?></b></h5> </div>
-                            <div class="col-md-4 text-info"><h5>ครูประจำแผนก : <b> #####</b></h5> </div>
+                            <div class="col-md-4 text-info"><h5>แผนก : <b> #####</b></h5> </div>
                         </div>
                         </div>
                         <br>
@@ -71,28 +71,34 @@
                                     <th> เวลา</th>
                                     <th> ชื่อกลุ่ม</th>
                                     <th> รหัสวิชา </th>
+                                    <th> ชั่วโมงเวลาสอน </th>
                                 </tr>
                             </thead>
-                                <tbody>
-                                <?php   $dpr_1=null;
-                                $dpr_2=null;
-                                $data_show=1;    // 1 แสดง 0 ไม่แสดง
-                                while($row2=mysqli_fetch_assoc($res2)){
-                                    $dpr_1=$row2['dpr2'];
-                                    if($dpr_2==null){
-                                        $dpr_2=$dpr_1;
-                                        $data_show=1;
-                                    }else{
-                                        if($dpr_1==$dpr_2){
-                                            $data_show=0;
-                                            $dpr_2=$dpr_1;
-                                        }else{
-                                            $dpr_2=$dpr_1;
-                                            $data_show=1;
-                                        }
-                                    }
 
-                                    ?>
+                                <tbody>  
+                                <?php   $dpr_1=null;  
+                                        $dpr_2=null;  
+                                        $data_show=1;    // 1 แสดง 0 ไม่แสดง  
+                                        $sum_dpr4=0;
+                                        while($row2=mysqli_fetch_assoc($res2)){  
+                                            $dpr_1=$row2['dpr2'];  
+                                            if($dpr_2==null){  
+                                                $dpr_2=$dpr_1;  
+                                                $data_show=1;     
+                                            }else{  
+                                                if($dpr_1==$dpr_2){  
+                                                    $data_show=0;   
+                                                    $dpr_2=$dpr_1;  
+                                                }else{
+                                                    $dpr_2=$dpr_1;  
+                                                    $data_show=1;               
+                                                }
+                                            }
+
+                                            $sum_dpr4 =$row2["dpr4"] + $sum_dpr4;
+
+                                        ?>    
+
                                     <tr><?php if($data_show==1){?>  
                                         <td><?php echo $row2['dpr2'] ?></td>  
                                         <?php }
@@ -100,12 +106,21 @@
                                          <?php
                                             echo "<td></td>"; 
                                             }?> 
-                                        <td> <?php echo $row2['dpr3']?></td>
+                                        <td> <?php echo $row2['dpr3']?> </td>
                                         <td> <?php echo $row2['group_name']?> </td>   
                                         <td> <?php echo $row2['dpr1']?> </td>
+                                        <td> <?php echo $row2['dpr4']?></td>
+                                        
                                     </tr>
                                     <?php }?>
-                                </tbody>
+                                    <tr>
+                                    <td><a href="test.php"><button type="button" class="btn btn-gradient-warning btn-icon-text"> PDF <i class="mdi mdi-printer btn-icon-append"></i></button></a></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th>รวมชั่วโมงการสอน :</th>
+                                    <td> <?php echo $sum_dpr4?></td>
+                                    </tr>
+                            </tbody>
                         </table>
                         <?php } ?>
                     </div>
