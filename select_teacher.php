@@ -22,7 +22,7 @@
                             <form action="select_teacher.php" method="get" >
                                     <div class="form-group">
                                             <select class="js-example-basic-multiple-limit form-control col-md-4" name="people_id" >
-                                            <option value="">---------- กรุณาเลือกชื่อ -------------</option>
+                                            <option value="" class="">---------- กรุณาเลือกชื่อ -------------</option>
                                             <?php while($row=mysqli_fetch_assoc($res)){ ?>
                                                     
                                             <option value="<?php echo $row['people_id']?>"> <?php echo $row['people_id']?> <?php echo $row['people_name']."  ".$row['people_surname']?> </option>
