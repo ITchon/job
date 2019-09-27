@@ -18,7 +18,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-info">ค้นหาข้อมูลตารางสอน</h4>
+                        <h4 class="card-title text-primary">ค้นหาข้อมูลตารางสอน</h4>
                             <form action="select_teacher.php" method="get" >
                                     <div class="form-group">
                                             <select class="js-example-basic-multiple-limit form-control col-md-4" name="people_id" >
