@@ -70,12 +70,14 @@
                                     <th> เวลา</th>
                                     <th> ชื่อกลุ่ม</th>
                                     <th> รหัสวิชา </th>
+                                    <th> ชั่วโมงเวลาสอน </th>
                                 </tr>
                             </thead>
                                 <tbody>  
                                 <?php   $dpr_1=null;  
                                         $dpr_2=null;  
                                         $data_show=1;    // 1 แสดง 0 ไม่แสดง  
+                                        $sum_dpr4=0;
                                         while($row2=mysqli_fetch_assoc($res2)){  
                                             $dpr_1=$row2['dpr2'];  
                                             if($dpr_2==null){  
@@ -89,8 +91,10 @@
                                                     $dpr_2=$dpr_1;  
                                                     $data_show=1;               
                                                 }
-                                            }     
-                                            
+                                            }
+
+                                            $sum_dpr4 =$row2["dpr4"] + $sum_dpr4;
+
                                         ?>    
                                     <tr><?php if($data_show==1){?>  
                                         <td><?php echo $row2['dpr2'] ?></td>  
@@ -99,12 +103,21 @@
                                          <?php
                                             echo "<td></td>"; 
                                             }?> 
-                                        <td> <?php echo $row2['dpr3']?></td>
+                                        <td> <?php echo $row2['dpr3']?> </td>
                                         <td> <?php echo $row2['group_name']?> </td>   
                                         <td> <?php echo $row2['dpr1']?> </td>
+                                        <td> <?php echo $row2['dpr4']?></td>
+                                        
                                     </tr>
                                     <?php }?>
-                                </tbody>
+                                    <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <th>รวมชั่วโมงการสอน :</th>
+                                    <td> <?php echo $sum_dpr4?></td>
+                                    </tr>
+                            </tbody>
                         </table>
                         <?php } ?>
                     </div>
