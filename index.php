@@ -1,7 +1,9 @@
 
 <?php include('menu.php');
  include('connect.php');
-
+$sql4 = "SELECT COUNT(`people_id`) AS gg FROM `people`";
+$result7 = $conn->query($sql4);
+$countid = $result7->fetch_assoc();
 ?>
 
 
@@ -15,9 +17,9 @@
 
         
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h1 class="font-weight-normal mb-3">สินค้าทั้งหมด
+                    <h1 class="font-weight-normal mb-3">จำนวนผู้สอน
                     </h1>
-                    <h1 class="mb-5"><?php echo $countid['gg']?> รายการ</h1>
+                    <h1 class="mb-5"><?php echo $countid['gg']?> คน</h1>
 
                 </div>
             </div>
