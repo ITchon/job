@@ -52,7 +52,8 @@
                             $res2=mysqli_query($conn,$sql2);
                             $row2=mysqli_fetch_assoc($res2);
 
-                        ?>        
+
+                        ?>
                         <br><div class="container-fluid">
                         <div class="row">
                             <div class="col-md-4 text-info"><h5>ตารางครูผู้สอน :<b> <?php echo $row2['teacher_name']?></b></h5> </div>
@@ -72,26 +73,26 @@
                                     <th> รหัสวิชา </th>
                                 </tr>
                             </thead>
-                                <tbody>  
-                                <?php   $dpr_1=null;  
-                                        $dpr_2=null;  
-                                        $data_show=1;    // 1 แสดง 0 ไม่แสดง  
-                                        while($row2=mysqli_fetch_assoc($res2)){  
-                                            $dpr_1=$row2['dpr2'];  
-                                            if($dpr_2==null){  
-                                                $dpr_2=$dpr_1;  
-                                                $data_show=1;     
-                                            }else{  
-                                                if($dpr_1==$dpr_2){  
-                                                    $data_show=0;   
-                                                    $dpr_2=$dpr_1;  
-                                                }else{
-                                                    $dpr_2=$dpr_1;  
-                                                    $data_show=1;               
-                                                }
-                                            }     
-                                            
-                                        ?>    
+                                <tbody>
+                                <?php   $dpr_1=null;
+                                $dpr_2=null;
+                                $data_show=1;    // 1 แสดง 0 ไม่แสดง
+                                while($row2=mysqli_fetch_assoc($res2)){
+                                    $dpr_1=$row2['dpr2'];
+                                    if($dpr_2==null){
+                                        $dpr_2=$dpr_1;
+                                        $data_show=1;
+                                    }else{
+                                        if($dpr_1==$dpr_2){
+                                            $data_show=0;
+                                            $dpr_2=$dpr_1;
+                                        }else{
+                                            $dpr_2=$dpr_1;
+                                            $data_show=1;
+                                        }
+                                    }
+
+                                    ?>
                                     <tr><?php if($data_show==1){?>  
                                         <td><?php echo $row2['dpr2'] ?></td>  
                                         <?php }
