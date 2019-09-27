@@ -18,7 +18,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title text-primary">ค้นหาข้อมูลตารางสอน</h4>
+                        <h2 class="card-title text-info">ค้นหาข้อมูลตารางสอน</h2><br>
                             <form action="select_teacher.php" method="get" >
                                     <div class="form-group">
                                             <select class="js-example-basic-multiple-limit form-control col-md-4" name="people_id" >
@@ -40,7 +40,7 @@
                         if($people_id==''){
                                 ?>
                                 <script>
-                            alert(" กรุณาเลือกชื่อ ");
+                            alert(" กรุณาเลือกชื่อของท่าน ");
                             </script>
                                 <?php
                         }   
@@ -56,7 +56,7 @@
                         ?>
                         <br><div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-4 text-info"><h5>ตารางครูผู้สอน :<b> <?php echo $row2['teacher_name']?></b></h5> </div>
+                            <div class="col-md-4 text-info"><h5>ชื่อ - นามสกุล :<b> <?php echo $row2['teacher_name']?></b></h5> </div>
                             <div class="col-md-4 text-info"><h5>รหัสครูผู้สอน : <b> <?php echo $row2['people_id']?></b></h5> </div>
                             <div class="col-md-4 text-info"><h5>แผนก : <b> #####</b></h5> </div>
                         </div>
@@ -68,10 +68,10 @@
                             <thead>
                                 <tr>
                                     <th> วันที่สอน </th>
-                                    <th> เวลา</th>
+                                    <!-- <th> เวลา</th> -->
                                     <th> ชื่อกลุ่ม</th>
                                     <th> รหัสวิชา </th>
-                                    <th> ชั่วโมงเวลาสอน </th>
+                                    <th> ชั่วโมงสอน </th>
                                 </tr>
                             </thead>
 
@@ -106,7 +106,7 @@
                                          <?php
                                             echo "<td></td>"; 
                                             }?> 
-                                        <td> <?php echo $row2['dpr3']?> </td>
+                                        <!-- <td> <?php echo $row2['dpr3']?> </td> -->
                                         <td> <?php echo $row2['group_name']?> </td>   
                                         <td> <?php echo $row2['dpr1']?> </td>
                                         <td> <?php echo $row2['dpr4']?></td>
@@ -114,10 +114,10 @@
                                     </tr>
                                     <?php }?>
                                     <tr>
-                                    <td><a href="test.php"><button type="button" class="btn btn-gradient-warning btn-icon-text"> PDF <i class="mdi mdi-printer btn-icon-append"></i></button></a></td>
+                                    <td><a href="test.php"><button type="button" class="btn btn-gradient-info btn-icon-text"> PDF <i class="mdi mdi-printer btn-icon-append"></i></button></a></td>
+                                    <!-- <td></td> -->
                                     <td></td>
-                                    <td></td>
-                                    <th>รวมชั่วโมงการสอน :</th>
+                                    <th>รวมชั่วโมงการสอน : </th>
                                     <td> <?php echo $sum_dpr4?></td>
                                     </tr>
                             </tbody>
