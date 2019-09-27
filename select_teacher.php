@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="col-md-4 text-info"><h5>ตารางครูผู้สอน :<b> <?php echo $row2['teacher_name']?></b></h5> </div>
                             <div class="col-md-4 text-info"><h5>รหัสครูผู้สอน : <b> <?php echo $row2['people_id']?></b></h5> </div>
-                            <div class="col-md-4 text-info"><h5>ครูประจำแผนก : <b> #####</b></h5> </div>
+                            <div class="col-md-4 text-info"><h5> : <b> #####</b></h5> </div>
                         </div>
                         </div>
                         <br>
