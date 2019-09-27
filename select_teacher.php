@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="col-md-4 text-info"><h5>ตารางครูผู้สอน :<b> <?php echo $row2['teacher_name']?></b></h5> </div>
                             <div class="col-md-4 text-info"><h5>รหัสครูผู้สอน : <b> <?php echo $row2['people_id']?></b></h5> </div>
-                            <div class="col-md-4 text-info"><h5> : <b> #####</b></h5> </div>
+                            <div class="col-md-4 text-info"><h5>ครูประจำแผนก : <b> #####</b></h5> </div>
                         </div>
                         </div>
                         <br>
@@ -72,33 +72,38 @@
                                     <th> รหัสวิชา </th>
                                 </tr>
                             </thead>
-                                <tbody>
-                                    <tr> 
-                                    <?php while($row2=mysqli_fetch_assoc($res2)){ 
-                                    ?>
-                                        <td><?php 
-                                        if($row2['dpr2']=='จันทร์'){
-                                            echo "จันทร์";
-                                        } 
-                                        if($row2['dpr2']=='อังคาร'){
-                                            echo "อังคาร";
-                                        } 
-                                        if($row2['dpr2']=='พุธ'){
-                                            echo "พุธ";
-                                        } 
-                                        if($row2['dpr2']=='พฤหัส'){
-                                            echo "พฤหัส";
-                                        } 
-                                        if($row2['dpr2']=='ศุกร์'){
-                                            echo "ศุกร์";
-                                        } 
-                                        ?></td>
-                                        
-                                        <td><?php echo $row2['dpr3']?></td>
+                                <tbody>  
+                                <?php   $dpr_1=null;  
+                                        $dpr_2=null;  
+                                        $data_show=1;    // 1 แสดง 0 ไม่แสดง  
+                                        while($row2=mysqli_fetch_assoc($res2)){  
+                                            $dpr_1=$row2['dpr2'];  
+                                            if($dpr_2==null){  
+                                                $dpr_2=$dpr_1;  
+                                                $data_show=1;     
+                                            }else{  
+                                                if($dpr_1==$dpr_2){  
+                                                    $data_show=0;   
+                                                    $dpr_2=$dpr_1;  
+                                                }else{
+                                                    $dpr_2=$dpr_1;  
+                                                    $data_show=1;               
+                                                }
+                                            }     
+                                            
+                                        ?>    
+                                    <tr><?php if($data_show==1){?>  
+                                        <td><?php echo $row2['dpr2'] ?></td>  
+                                        <?php }
+                                        else{ ?>
+                                         <?php
+                                            echo "<td></td>"; 
+                                            }?> 
+                                        <td> <?php echo $row2['dpr3']?></td>
                                         <td> <?php echo $row2['group_name']?> </td>   
-                                        <td> <?php echo $row2['dpr1']?> </td>   
+                                        <td> <?php echo $row2['dpr1']?> </td>
                                     </tr>
-                                    <?php } ?>
+                                    <?php }?>
                                 </tbody>
                         </table>
                         <?php } ?>
